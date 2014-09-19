@@ -1,7 +1,23 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class Chemotaxis extends PApplet {
+
 //Vivian Lam. AP Computer Science, Mod 6/7, Chemotaxis
 Bacteria [] nom;
 Food food;
- void setup()   
+ public void setup()   
  {     
   size(400,400);
   nom=new Bacteria[50];
@@ -11,7 +27,7 @@ Food food;
   food=new Food();
 }
 
- void draw()   
+ public void draw()   
  {    
    background(0);
 
@@ -27,7 +43,7 @@ Food food;
  }
    
  } 
- void mousePressed(){
+ public void mousePressed(){
    for(int i=0; i<nom.length;i++){
    nom[i].myColor=(color ((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255)));
    }    
@@ -41,7 +57,7 @@ Food food;
      myY=(int)(Math.random()*400);
      myColor= color ((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255));
    }   
-   void move(){
+   public void move(){
      myX=myX+((int)(Math.random()*9)-4);
      myY=myY+((int)(Math.random()*9)-4);
      if(myX>=400){
@@ -56,7 +72,7 @@ Food food;
      }
 
    }
-   void show(){
+   public void show(){
      noFill();
      strokeWeight(3);
      stroke(myColor);
@@ -70,12 +86,21 @@ Food food;
      hisX=mouseX;
      hisY=mouseY;
    }
-   void move(){
+   public void move(){
      hisX=mouseX;
      hisY=mouseY;
    }
-   void show(){
+   public void show(){
      stroke(255);
      rect(hisX,hisY,30,30);
    }
  } 
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "Chemotaxis" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
+  }
+}
